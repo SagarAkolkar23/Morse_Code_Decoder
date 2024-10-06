@@ -171,7 +171,6 @@ public class Morse {
 
         }
         int init = 0;
-        int track = 0;
         StringBuilder decoded = new StringBuilder();
 
         StringBuilder letter = new StringBuilder();
