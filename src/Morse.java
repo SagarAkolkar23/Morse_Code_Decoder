@@ -141,7 +141,17 @@ public class Morse {
                 init++;
             }
             decoded.append(Dec(letter.toString()));
-           init++;
+            if(init+1<a.length()) {
+                if (a.charAt(init) == ' ' && a.charAt(init + 1) == ' ') {
+                    init = init + 2;
+                    decoded.append(' ');
+                }
+            }
+
+
+
+
+                init++;
 
 
 
@@ -151,11 +161,18 @@ public class Morse {
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        System.out.println("Enter the code : ");
-        String  a = "... .- --. .- .-. ";
-        System.out.println("The program you entered is : " + a);
+        System.out.println("Enter the morse code : ");
+        String a = STR."\{sc.nextLine()} ";
+        System.out.println(STR."The code you entered is : \{a}");
         Morse m1 = new Morse();
-        System.out.println(m1.Decode(a));
+        System.out.println(STR."The message encoded in the code  is : \{m1.Decode(a)}");
+
 
     }
+
+
+
+
+
+
 }
