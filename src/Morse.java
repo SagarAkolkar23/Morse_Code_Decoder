@@ -1,7 +1,7 @@
+import java.util.Objects;
 import java.util.Scanner;
 
 public class Morse {
-
     public char Dec(String Letter){
         char a = ' ';
         switch (Letter){
@@ -64,63 +64,104 @@ public class Morse {
                 break;
             case "-" :
                 a = 'T';
-            break;
+                break;
             case "..-" :
                 a = 'U';
-            break;
+                break;
             case "...-" :
                 a = 'V';
-            break;
+                break;
             case ".--" :
                 a = 'W';
-            break;
+                break;
             case "-..-" :
                 a = 'X';
-            break;
+                break;
             case "-.--" :
                 a = 'Y';
-            break;
+                break;
             case "--.." :
                 a = 'Z';
-            break;
+                break;
             case "-----" :
                 a = '0';
-            break;
+                break;
             case ".----" :
                 a = '1';
-            break;
+                break;
             case "..---" :
                 a = '2';
-            break;
+                break;
             case "...--" :
                 a = '3';
-            break;
+                break;
             case "....-" :
                 a = '4';
-            break;
+                break;
             case "....." :
                 a = '5';
-            break;
+                break;
             case "-...." :
                 a = '6';
-            break;
+                break;
             case "--..." :
                 a = '7';
-            break;
+                break;
             case "---.." :
                 a = '8';
-            break;
+                break;
             case "----." :
                 a = '9';
-            break;
+                break;
             default:
-                System.out.println("Check your morse code.");
 
 
         }
         return a;
     }
 
+    public String Enc(char letter) {
+        String morseCode = switch (Character.toUpperCase(letter)) {
+            case 'A' -> ".-";
+            case 'B' -> "-...";
+            case 'C' -> "-.-.";
+            case 'D' -> "-..";
+            case 'E' -> ".";
+            case 'F' -> "..-.";
+            case 'G' -> "--.";
+            case 'H' -> "....";
+            case 'I' -> "..";
+            case 'J' -> ".---";
+            case 'K' -> "-.-";
+            case 'L' -> ".-..";
+            case 'M' -> "--";
+            case 'N' -> "-.";
+            case 'O' -> "---";
+            case 'P' -> ".--.";
+            case 'Q' -> "--.-";
+            case 'R' -> ".-.";
+            case 'S' -> "...";
+            case 'T' -> "-";
+            case 'U' -> "..-";
+            case 'V' -> "...-";
+            case 'W' -> ".--";
+            case 'X' -> "-..-";
+            case 'Y' -> "-.--";
+            case 'Z' -> "--..";
+            case '0' -> "-----";
+            case '1' -> ".----";
+            case '2' -> "..---";
+            case '3' -> "...--";
+            case '4' -> "....-";
+            case '5' -> ".....";
+            case '6' -> "-....";
+            case '7' -> "--...";
+            case '8' -> "---..";
+            case '9' -> "----.";
+            default -> "";
+        };
+        return morseCode;
+    }
 
     public  String  Decode(String a){
         for(int i = 0; i<a.length();i++){
@@ -147,26 +188,54 @@ public class Morse {
                     decoded.append(' ');
                 }
             }
-
-
-
-
                 init++;
-
-
-
         }
         return decoded.toString();
     }
+    public String Encode(String b){
+        String c = b.toUpperCase();
+        StringBuilder d = new StringBuilder();
+        int i = 0;
+        while(i<b.length()-1){
+            if((b.charAt(i) <= 'A' && b.charAt(i) >= 'Z') || (b.charAt(i) <= 0 && b.charAt(i) >= 9)){
+                continue;
+            }
+            if(b.charAt(i) != ' '){
+                d.append(Enc(b.charAt(i)));
+                d.append(' ');
+            }
+            else{
+                d.append(' ');
+                d.append(' ');
+                d.append(' ');
+            }
+            i++;
+        }
+        return d.toString();
+    }
+
 
     public static void main(String[] args) {
+        Morse morse = new Morse();
+        System.out.println("Enter your objective : ");
+        System.out.println("Enter D for decoding a morse code : ");
+        System.out.println("Enter E for encoding a sentence into morse code : ");
         Scanner sc = new Scanner(System.in);
-        System.out.println("Enter the morse code : ");
-        String a = STR."\{sc.nextLine()} ";
-        System.out.println(STR."The code you entered is : \{a}");
-        Morse m1 = new Morse();
-        System.out.println(STR."The message encoded in the code  is : \{m1.Decode(a)}");
-
+        String choice = sc.nextLine();
+        if(Objects.equals(choice, "D")){
+            System.out.println("Enter a morse code : ");
+            String code = sc.nextLine();
+            code = code + ' ';
+            System.out.println(STR."The message is : \{morse.Decode(code)}");
+        }
+        else if(Objects.equals(choice, "E")){
+            System.out.println("Enter a sentence you want to Encode : ");
+            String sent = sc.nextLine();
+            System.out.println(STR."The code is : \{morse.Encode(sent)}");
+        }
+        else{
+            System.out.println("Enter choice correctly ");
+        }
 
     }
 }
